@@ -1,0 +1,77 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import projects from '../../data/projects';
+
+export async function getStaticPaths() {
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<ProjectLayout title={project.title}>
+  <div class="project-detail">
+    <h1>{project.title}</h1>
+    <img src={project.image} alt={project.title} />
+    <div class="project-content">
+      <p>{project.description}</p>
+      <h2>Technologies Used</h2>
+      <ul class="tech-list">
+        {project.technologies.map(tech => (
+          <li>{tech}</li>
+        ))}
+      </ul>
+      <h2>Features</h2>
+      <ul class="features-list">
+        {project.features.map(feature => (
+          <li>{feature}</li>
+        ))}
+      </ul>
+      <a href={project.link} class="project-link" target="_blank">
+        View Live Project
+      </a>
+    </div>
+  </div>
+</ProjectLayout>
+
+<style>
+  .project-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .project-detail img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .tech-list,
+  .features-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+
+  .project-link:hover {
+    background: var(--primary-light);
+  }
+</style>

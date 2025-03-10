@@ -1,0 +1,44 @@
+---
+interface Props {
+  name: string;
+  level: number;
+}
+
+const { name, level } = Astro.props;
+---
+
+<div class="skill-item">
+  <div class="skill-header">
+    <span>{name}</span>
+    <span>{level}%</span>
+  </div>
+  <div class="skill-bar">
+    <div class="skill-progress" style={`width: ${level}%`}></div>
+  </div>
+</div>
+
+<style>
+  .skill-item {
+    margin-bottom: 1rem;
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .skill-progress {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+</style>

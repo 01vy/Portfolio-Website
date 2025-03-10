@@ -1,0 +1,115 @@
+---
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import TechBackground from '../components/TechBackground.jsx';
+
+const title = "Your Website Title";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <TechBackground />
+    <nav class="navbar">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <slot />
+    <footer class="footer">
+      <div class="social-links">
+        <a href="https://github.com" target="_blank"><FaGithub /></a>
+        <a href="https://linkedin.com" target="_blank"><FaLinkedin /></a>
+        <a href="mailto:email@gmail.com"><FaEnvelope /></a>
+      </div>
+      <p>© {new Date().getFullYear()} [Your Name]. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: #6d28d9;
+    --primary-light: #8b5cf6;
+    --background: #0f172a;
+    --text: #f8fafc;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    overflow-x: hidden;
+  }
+
+  .tech-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.9);
+  }
+
+  .navbar a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+
+  .navbar a:hover::after {
+    width: 100%;
+  }
+
+  .footer {
+    padding: 2rem;
+    text-align: center;
+    background: rgba(15, 23, 42, 0.9);
+    margin-top: 4rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .social-links a {
+    color: var(--text);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .social-links a:hover {
+    color: var(--primary);
+  }
+</style>
