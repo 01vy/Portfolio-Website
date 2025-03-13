@@ -1,28 +1,14 @@
 export default [
   {
-    slug: 'project-1',
     title: 'Project 1',
-    description: 'Detailed description of project 1...',
-    image: '/project1.jpg',
+    description: 'A modern web application built with cutting-edge technologies.',
     technologies: ['React', 'Node.js', 'MongoDB'],
-    features: [
-      'Responsive design',
-      'User authentication',
-      'Real-time updates'
-    ],
-    link: '#'
+    link: 'https://example.com'
   },
   {
-    slug: 'project-2',
     title: 'Project 2',
-    description: 'Detailed description of project 2...',
-    image: '/project2.jpg',
+    description: 'An e-commerce platform with advanced features.',
     technologies: ['Vue', 'Laravel', 'MySQL'],
-    features: [
-      'E-commerce functionality',
-      'Payment integration',
-      'Admin dashboard'
-    ],
-    link: '#'
+    link: 'https://example.com'
   }
 ];

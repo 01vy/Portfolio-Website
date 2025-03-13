@@ -17,7 +17,7 @@ export default function TechBackground() {
       ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#6d28d9';
-      ctx.font = '15px monospace';
+      ctx.font = '15px Fira Code, monospace';
 
       drops.forEach((y, i) => {
         const text = binary[Math.floor(Math.random() * binary.length)];
@@ -31,5 +31,11 @@ export default function TechBackground() {
     return () => clearInterval(interval);
   }, []);
 
-  return <canvas ref={canvasRef} className="tech-background" />;
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="tech-background"
+      aria-hidden="true"
+    />
+  );
 }

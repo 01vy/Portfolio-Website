@@ -1,6 +1,8 @@
 ---
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import TechBackground from '../components/TechBackground.jsx';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.svg';
 
 const title = "Your Website Title";
 ---
@@ -9,25 +11,41 @@ const title = "Your Website Title";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
     <TechBackground />
     <nav class="navbar">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <slot />
-    <footer class="footer">
-      <div class="social-links">
-        <a href="https://github.com" target="_blank"><FaGithub /></a>
-        <a href="https://linkedin.com" target="_blank"><FaLinkedin /></a>
-        <a href="mailto:email@gmail.com"><FaEnvelope /></a>
+      <a href="/" class="logo-link">
+        <Image src={logo} alt="Portfolio Logo" width={40} height={40} loading="eager" />
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
-      <p>© {new Date().getFullYear()} [Your Name]. All rights reserved.</p>
+    </nav>
+    <main class="main-content">
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <FaGithub size={28} />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <FaLinkedin size={28} />
+          </a>
+          <a href="mailto:email@gmail.com" aria-label="Email">
+            <FaEnvelope size={28} />
+          </a>
+        </div>
+        <p>© {new Date().getFullYear()} [Your Name]. All rights reserved.</p>
+      </div>
     </footer>
   </body>
 </html>
@@ -40,76 +58,68 @@ const title = "Your Website Title";
     --text: #f8fafc;
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
     background: var(--background);
     color: var(--text);
     font-family: 'Fira Code', monospace;
-    overflow-x: hidden;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
-  .tech-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  .main-content {
+    flex: 1;
+    padding-top: 0;
   }
 
   .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 2rem;
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
     z-index: 1000;
     background: rgba(15, 23, 42, 0.9);
-  }
-
-  .navbar a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-
-  .navbar a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-  }
-
-  .navbar a:hover::after {
-    width: 100%;
+    backdrop-filter: blur(10px);
   }
 
   .footer {
+    margin-top: auto;
     padding: 2rem;
-    text-align: center;
     background: rgba(15, 23, 42, 0.9);
-    margin-top: 4rem;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
   .social-links {
     display: flex;
-    justify-content: center;
     gap: 1.5rem;
-    margin-bottom: 1rem;
   }
 
   .social-links a {
     color: var(--text);
-    font-size: 1.5rem;
     transition: color 0.3s ease;
   }
 
   .social-links a:hover {
-    color: var(--primary);
+    color: var(--primary-light);
   }
 </style>

@@ -16,7 +16,7 @@ const typingTexts = [
   <section id="about" class="hero-section">
     <div class="container">
       <h1 class="text-gradient">Hi, I'm [Your Name]</h1>
-      <TypingText texts={typingTexts} />
+      <TypingText texts={typingTexts} speed={80} />
       <p class="subtitle">
         Full Stack Developer | Tech Enthusiast | Problem Solver
       </p>
@@ -56,6 +56,12 @@ const typingTexts = [
     padding: 2rem;
   }
 
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
   .text-gradient {
     background: linear-gradient(45deg, var(--primary), var(--primary-light));
     -webkit-background-clip: text;
@@ -63,27 +69,6 @@ const typingTexts = [
     -webkit-text-fill-color: transparent;
     font-size: 4rem;
     margin-bottom: 1rem;
-  }
-
-  .typing-text {
-    font-size: 1.5rem;
-    margin: 2rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .code-icon {
-    color: var(--primary);
-  }
-
-  .cursor {
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
   }
 
   .code-snippet {
@@ -96,19 +81,28 @@ const typingTexts = [
     overflow-x: auto;
   }
 
-  .code-snippet pre {
-    margin: 0;
-  }
-
-  .code-snippet code {
-    color: var(--primary-light);
-    font-family: 'Fira Code', monospace;
-  }
-
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+  }
+
+  .typing-text {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
   }
 </style>
